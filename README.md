@@ -12,7 +12,7 @@
 - 超快的端口扫描
 - 服务和应用版本检测功能，内置指纹探针采用:[nmap-service-probes](https://raw.githubusercontent.com/nmap/nmap/master/nmap-service-probes)
 - Web服务（http、https）信息探测
-- ~~扫描结果兼容INFINITY攻防协同平台 ~~（暂不公开）
+- ~~扫描结果兼容INFINITY攻防协同平台~~（暂不公开）
 
 ## 🎉First Game
 
