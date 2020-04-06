@@ -95,7 +95,7 @@
 
   * ***Cobalt Strike跨平台beacon***
 
-    ​        ServerScan的优势在于跨平台，在Hook师傅的帮（jian）助（du）下目前已经基本适配了[Cross C2](https://github.com/gloxec/CrossC2)的Linux、Mac OS两大平台，为了提高隐匿性减少文件特征，目前支持内存加载可执行程序和动态链接库调用，您只需在安装了Cross C2的Cobalt Strike中导入对应的.cna脚本，即可实现ServerScan与Cobalt Strike跨平台beacon联动，具体使用参考Usage。
+    ​        ServerScan的优势在于跨平台，在Hook师傅的帮（jian）助（du）下目前已经基本适配了[Cross C2](https://github.com/gloxec/CrossC2)的Linux、Mac OS两大平台，为了提高隐匿性减少文件特征，目前支持内存加载可执行程序和动态链接库调用，您只需在安装了Cross C2的Cobalt Strike中导入对应的.cna脚本，即可实现ServerScan与Cobalt Strike跨平台beacon联动，具体使用参考[Usage](#usage)。
 
       * ***for PortScan***
 
@@ -233,9 +233,13 @@
 
   * ***Cobalt Strike跨平台beacon***
 
-  ​     首先您应该确保已经成功在安装了[Cross C2](https://github.com/gloxec/CrossC2)，其次在Cobalt Strike的Script Manager中 ***Load*** ServerScanForLinux/serverscan.linux.elf.cna 和  ServerScanForLinux/serverscan.linux.so.cna，两个脚本分别对应内存加载ELF、动态链接库so调用，两者的区别主要是隐匿性的问题，若直接调用so文件运行serverscan时，在主机上ps无法找到对应的进程，而直接内存加载serverscan的ELF则会在运行过程中出现一个随机名称的扫描进程。这里推荐动态链接库so调用。
+  ​     首先您应该确保已经成功在安装了[Cross C2](https://github.com/gloxec/CrossC2)；
 
-  *（目前带有指纹识别的动态链接库编译的文件体积较大，还没有找到合适的办法压缩体积，各位师傅们有好的提议欢迎issue）*
+  ​	其次在Cobalt Strike的Script Manager中 ***Load*** serverscan.linux.elf.cna 和  serverscan.linux.so.cna两个脚本，其分别对应内存加载ELF、动态链接库so调用，两者的区别主要是隐匿性的问题😎。
+
+  ​	若直接调用so文件运行serverscan时，在主机上ps无法找到对应的进程，而直接内存加载serverscan的ELF则会在运行过程中出现一个随机名称的扫描进程🙃。
+
+  *（目前带有指纹识别的动态链接库编译的文件体积较大，还没有找到合适的办法压缩体积，各位师傅们有好的提议欢迎issue）*😘😘😘
 
   ![scriptManager_linux](./img/serverscan/Usage/scriptManager_linux.png)
 
