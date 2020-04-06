@@ -1,0 +1,81 @@
+include(script_resource("./CrossC2Kit.cna"));
+
+ssh_alias portscan64 {
+    $taskName = "portscan64";
+    $taskType = "ELF";
+    $taskResType = "portscan";
+    $loadlib = "./ELF/portscan";
+
+    $beaconid = $1;
+    $displayName = random_string(5);
+    $host = $2;
+    $port = $3;
+    $scan_type = $4;
+    $transportArg = $displayName. "^". $host . "^" . $port . "^" . $scan_type ;
+
+    blog($beaconid, "portscan64: " . $host . " " . $port);
+
+    bcrossc2_load_dyn($beaconid, $taskType, $taskName, $taskResType, $loadlib, $transportArg);
+}
+
+ssh_command_register("portscan64", "Load PortScan adm64 ELF,Scan a network for open services", "Use: HOST  Host to be scanned, supports four formats:\n\t\t192.168.1.1\n\t\t192.168.1.1-10\n\t\t192.168.1.*\n\t\t192.168.1.0/24\nPORT  Customize port list, separate with ',' example: 21,22,80-99,8000-8080 ...\nMODEL Scan Model: icmp or tcp");
+
+ssh_alias serverscan64 {
+    $taskName = "serverscan64";
+    $taskType = "ELF";
+    $taskResType = "portscan";
+    $loadlib = "./ELF/serverscan";
+
+    $beaconid = $1;
+    $displayName = random_string(5);
+    $host = $2;
+    $port = $3;
+    $scan_type = $4;
+    $transportArg = $displayName. "^". $host . "^" . $port . "^" . $scan_type ;
+
+    blog($beaconid, "serverscan64: " . $host . " " . $port);
+
+    bcrossc2_load_dyn($beaconid, $taskType, $taskName, $taskResType, $loadlib, $transportArg);
+}
+
+ssh_command_register("serverscan64", "Load ServerScan adm64 ELF,Scan a network for open services and services version detection", "Use: HOST  Host to be scanned, supports four formats:\n\t\t192.168.1.1\n\t\t192.168.1.1-10\n\t\t192.168.1.*\n\t\t192.168.1.0/24\nPORT  Customize port list, separate with ',' example: 21,22,80-99,8000-8080 ...\nMODEL Scan Model: icmp or tcp");
+
+ssh_alias portscan386 {
+    $taskName = "portscan386";
+    $taskType = "ELF";
+    $taskResType = "portscan";
+    $loadlib = "./ELF/portscan386";
+
+    $beaconid = $1;
+    $displayName = random_string(5);
+    $host = $2;
+    $port = $3;
+    $scan_type = $4;
+    $transportArg = $displayName. "^". $host . "^" . $port . "^" . $scan_type ;
+
+    blog($beaconid, "portscan386: " . $host . " " . $port);
+
+    bcrossc2_load_dyn($beaconid, $taskType, $taskName, $taskResType, $loadlib, $transportArg);
+}
+
+ssh_command_register("portscan386", "Load PortScan i386 ELF,Scan a network for open services", "Use: HOST  Host to be scanned, supports four formats:\n\t\t192.168.1.1\n\t\t192.168.1.1-10\n\t\t192.168.1.*\n\t\t192.168.1.0/24\nPORT  Customize port list, separate with ',' example: 21,22,80-99,8000-8080 ...\nMODEL Scan Model: icmp or tcp");
+
+ssh_alias serverscan386 {
+    $taskName = "serverscan386";
+    $taskType = "ELF";
+    $taskResType = "portscan";
+    $loadlib = "./ELF/serverscan386";
+
+    $beaconid = $1;
+    $displayName = random_string(5);
+    $host = $2;
+    $port = $3;
+    $scan_type = $4;
+    $transportArg = $displayName. "^". $host . "^" . $port . "^" . $scan_type ;
+
+    blog($beaconid, "serverscan386: " . $host . " " . $port);
+
+    bcrossc2_load_dyn($beaconid, $taskType, $taskName, $taskResType, $loadlib, $transportArg);
+}
+
+ssh_command_register("serverscan386", "Load ServerScan i386 ELF,Scan a network for open services and services version detection", "Use: HOST  Host to be scanned, supports four formats:\n\t\t192.168.1.1\n\t\t192.168.1.1-10\n\t\t192.168.1.*\n\t\t192.168.1.0/24\nPORT  Customize port list, separate with ',' example: 21,22,80-99,8000-8080 ...\nMODEL Scan Model: icmp or tcp");

@@ -1,0 +1,25 @@
+alias serverscan86 {
+    $host = $2;
+    $port = $3;
+    $type = $4;
+	$serverscanFile = "/PE/x86/serverscan_386.exe";
+	$serverscan = "serverscan_386.exe";
+    bcd($1, "c:\\windows\\temp\\");
+    bupload($1, script_resource($serverscanFile));
+    bshell($1, $serverscan." ".$host." ".$port." ".$type);
+    brm($1, $serverscan);
+}
+beacon_command_register("serverscan86", "Scan a network for open services and services version detection x86", "Use: HOST  Host to be scanned, supports four formats:\n\t\t192.168.1.1\n\t\t192.168.1.1-10\n\t\t192.168.1.*\n\t\t192.168.1.0/24\nPORT  Customize port list, separate with ',' example: 21,22,80-99,8000-8080 ...\nMODEL Scan Model: icmp or tcp");
+
+alias serverscan64 {
+    $host = $2;
+    $port = $3;
+    $type = $4;
+    $serverscanFile = "/PE/x64/serverscan_amd64.exe";
+	$serverscan = "serverscan_amd64.exe";
+    bcd($1, "c:\\windows\\temp\\");
+    bupload($1, script_resource($serverscanFile));
+    bshell($1, $serverscan." ".$host." ".$port." ".$type);
+    brm($1, $serverscan);
+}
+beacon_command_register("serverscan64", "Scan a network for open services and services version detection x64", "Use: HOST  Host to be scanned, supports four formats:\n\t\t192.168.1.1\n\t\t192.168.1.1-10\n\t\t192.168.1.*\n\t\t192.168.1.0/24\nPORT  Customize port list, separate with ',' example: 21,22,80-99,8000-8080 ...\nMODEL Scan Model: icmp or tcp");

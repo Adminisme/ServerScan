@@ -1,0 +1,39 @@
+include(script_resource("./CrossC2Kit.cna"));
+
+ssh_alias portscan {
+    $taskName = "portscan";
+    $taskType = "so";
+    $taskResType = "portscan";
+    $loadlib = "./SO/crossc2_portscan.so";
+
+    $beaconid = $1;
+    $host = $2;
+    $port = $3;
+    $scan_type = $4;
+    $transportArg = $host . "^" . $port . "^" . $scan_type;
+
+    blog($beaconid, "portscan: " . $host . " " . $port . " " . $scan_type);
+
+    bcrossc2_load_dyn($beaconid, $taskType, $taskName, $taskResType, $loadlib, $transportArg);
+}
+
+ssh_command_register("portscan", "Load PortScan so,Scan a network for open services", "Use: HOST  Host to be scanned, supports four formats:\n\t\t192.168.1.1\n\t\t192.168.1.1-10\n\t\t192.168.1.*\n\t\t192.168.1.0/24\nPORT  Customize port list, separate with ',' example: 21,22,80-99,8000-8080 ...\nMODEL Scan Model: icmp or tcp");
+
+ssh_alias serverscan {
+    $taskName = "serverscan";
+    $taskType = "so";
+    $taskResType = "portscan";
+    $loadlib = "./SO/crossc2_serverscan.so";
+
+    $beaconid = $1;
+    $host = $2;
+    $port = $3;
+    $scan_type = $4;
+    $transportArg = $host . "^" . $port . "^" . $scan_type;
+
+    blog($beaconid, "serverscan: " . $host . " " . $port . " " . $scan_type);
+
+    bcrossc2_load_dyn($beaconid, $taskType, $taskName, $taskResType, $loadlib, $transportArg);
+}
+
+ssh_command_register("serverscan", "Load ServerScan so,Scan a network for open services and services version detection", "Use: HOST  Host to be scanned, supports four formats:\n\t\t192.168.1.1\n\t\t192.168.1.1-10\n\t\t192.168.1.*\n\t\t192.168.1.0/24\nPORT  Customize port list, separate with ',' example: 21,22,80-99,8000-8080 ...\nMODEL Scan Model: icmp or tcp");
