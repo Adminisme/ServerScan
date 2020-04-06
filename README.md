@@ -16,7 +16,7 @@
 
 ## 🎉First Game
 
- 总结诸多实战经验，考虑到实战过程中会出现和存在诸多复杂的环境，因此**ServerScan**设计了**轻巧版**、**专业版**、支持**Cobalt Strike跨平台beacon:[Cross C2](https://github.com/gloxec/CrossC2)的动态链接库**，以及支持~~**INFINITY攻防协同平台的专用版**~~。便于在不同的Shell环境中可以轻松自如的使用：如：Windows Cmd、Linux Console、远控Console、WebShell等，以及Cobalt Strike cna脚本文件加载和无文件落地的内存加载使用。
+​	总结诸多实战经验，考虑到实战过程中会出现和存在复杂得环境、红蓝对抗过程中常见得内存加载无文件落地执行等，因此**ServerScan**设计了**轻巧版**、**专业版**、支持**Cobalt Strike跨平台beacon:[Cross C2](https://github.com/gloxec/CrossC2)的动态链接库**，以及支持**~~INFINITY攻防协同平台的专用版~~**。便于在不同的Shell环境中可以轻松自如的使用：如：Windows Cmd、Linux Console、远控Console、WebShell等，以及Cobalt Strike联动使用cna脚本文件加载，实现内网信息收集为下一步横向移动快速铺路。
 
 **轻巧版：**
 
@@ -28,7 +28,7 @@
 
 **动态链接库：**
 
- 为支持Cobalt Strike跨平台beacon，无文件落地，基于轻巧版本进行动态链接库编译，扫描超时时长为1.5秒。
+ 为支持Cobalt Strike跨平台beacon，无文件落地执行，无文件执行的进程信息，基于轻巧版本进行动态链接库编译，扫描超时时长为1.5秒。
 
 ### 💻for  Linux or Windows
 
@@ -80,24 +80,56 @@
 
 ### 🎮for Cobalt Strike
 
-  * ***can脚本***
-  
-  * for PortScan
-    
-  * for Service and Version Detection
+  * ***Windows***
+
+       	由于Cobalt Strike已经内置了PortScan，因此目前Windows仅支持利用cna上传对应版本的可执行文件到服务器进行扫描。
+
+      * ***for Service and Version Detection***
+
+        Interact:
+
+        ![serverscan_windows](./img/serverscan/CobaltStrike/serverscan_windows.jpg)
+
+        ![serverscan2_windows](./img/serverscan/CobaltStrike/serverscan2_windows.jpg)
 
 
   * ***Cobalt Strike跨平台beacon***
 
-  * for PortScan
+    ​        ServerScan的优势在于跨平台，在Hook师傅的帮（jian）助（du）下目前已经基本适配了[Cross C2](https://github.com/gloxec/CrossC2)的Linux、Mac OS两大平台，为了提高隐匿性减少文件特征，目前支持内存加载可执行程序和动态链接库调用，您只需在安装了Cross C2的Cobalt Strike中导入对应的.cna脚本，即可实现ServerScan与Cobalt Strike跨平台beacon联动，具体使用参考Usage。
 
-  * for Service and Version Detection
+      * ***for PortScan***
+
+        Interact:
+
+        ![portscan_console](./img/serverscan/CobaltStrike/portscan_console.jpg)
+
+        Targets结果集自动导入:
+
+        ![portscan_targets](./img/serverscan/CobaltStrike/portscan_targets.jpg)
+
+        services结果集自动导入:
+
+        ![portscan_services](./img/serverscan/CobaltStrike/portscan_services.jpg)
+
+      * ***for Service and Version Detection***
+
+        Interact:
+
+        ![serverscan_console](./img/serverscan/CobaltStrike/serverscan_console.png)
+
+        Targets结果集自动导入:
+
+        ![serverscan_targets](./img/serverscan/CobaltStrike/serverscan_targets.jpg)
+
+        services结果集自动导入:
+
+        ![serverscan_services](./img/serverscan/CobaltStrike/serverscan_services.jpg)
 
 
 
 ## 🌈Runtime Environment
 
-为了实现**"一次开发，到处运行"**的效果，**ServerScan**采用具有跨平台编译特性的**Golang**进行开发。
+为了实现“**一次开发，到处运行**”的效果，**ServerScan**采用具有跨平台编译特性的**Golang**进行开发。
 
 目前已成功编译了**三大主流操作系统**的**可执行程序**和**动态链接库**，并在如下操作系统**通过**了运行测试：
 
@@ -140,40 +172,85 @@
 
     ```shell
       -h string
-          Host to be scanned, supports four formats:
-          192.168.1.1
-          192.168.1.1-10
-          192.168.1.*
-          192.168.1.0/24.
+        	Host to be scanned, supports four formats:
+        	192.168.1.1
+        	192.168.1.1-10
+        	192.168.1.*
+        	192.168.1.0/24.
       -m string
-          Scan Model icmp or tcp. (default "icmp")
+        	Scan Model icmp or tcp. (default "icmp")
       -o string
-          Output the scanning information to file.
+        	Output the scanning information to file.
       -p string
-          Customize port list, separate with ',' example: 21,22,80-99,8000-8080 ... (default "80-99,7000-9000,9001-9999,4430,1433,1521,3306,5000,5432,6379,21,22,100-500,873,4440,6082,3389,5560,5900-5909,1080,1900,10809,50030,50050,50070")
+        	Customize port list, separate with ',' example: 21,22,80-99,8000-8080 ... (default "80-99,7000-9000,9001-9999,4430,1433,1521,3306,5000,5432,6379,21,22,100-500,873,4440,6082,3389,5560,5900-5909,1080,1900,10809,50030,50050,50070")
       -t int
-          Setting scaner connection timeouts,Maxtime 3000 Millisecond. (default 1500)
-      -v  ServerScan Build Version
+        	Setting scaner connection timeouts,Maxtime 30 Second. (default 2)
+      -v	ServerScan Build Version
     ```
 
 * **Cobalt Strike版本**
 
-  * can脚本
+  ```shell
+  ├─ServerScanForLinux
+  │  │  CrossC2Kit.cna
+  │  │  serverscan.linux.elf.cna
+  │  │  serverscan.linux.so.cna
+  │  │
+  │  ├─ELF
+  │  │      portscan
+  │  │      portscan386
+  │  │      serverscan
+  │  │      serverscan386
+  │  │
+  │  └─SO
+  │          crossc2_portscan.so
+  │          crossc2_serverscan.so
+  │
+  └─ServerScanForWindows
+      │  serverScan.win.cna
+      │
+      └─PE
+          ├─x64
+          │      serverscan_amd64.exe
+          │
+          └─x86
+                  serverscan_386.exe
+  ```
 
-    
+  * ***Windows***
 
-  * Hook - 无文件落地
+  ​     在Cobalt Strike的Script Manager中***Load*** ServerScanForWindows/serverScan.win.cna
 
-    
+  （Ps：serverScan.win.cna主要是通过将本地对应版本的Serverscan上传到服务器的c:\\windows\\temp\目录执行，此方法略显笨拙，后期会更新无文件落地的方法）
+
+  ![scriptManager_win](./img/serverscan/Usage/scriptManager_win.png)
+
+  ​     选择一个已经上线的beacon,在Interact中输入help查看Commands是否新增了Serverscanx86、Serverscanx64，若出现就可以像使用portscan一样使用serverscan了。🙂
+
+  ![windows_help](./img/serverscan/Usage/windows_help.jpg)
+
+  ![windows_usage](./img/serverscan/Usage/windows_usage.jpg)
+
+  * ***Cobalt Strike跨平台beacon***
+
+  ​     首先您应该确保已经成功在安装了[Cross C2](https://github.com/gloxec/CrossC2)，其次在Cobalt Strike的Script Manager中 ***Load*** ServerScanForLinux/serverscan.linux.elf.cna 和  ServerScanForLinux/serverscan.linux.so.cna，两个脚本分别对应内存加载ELF、动态链接库so调用，两者的区别主要是隐匿性的问题，若直接调用so文件运行serverscan时，在主机上ps无法找到对应的进程，而直接内存加载serverscan的ELF则会在运行过程中出现一个随机名称的扫描进程。这里推荐动态链接库so调用。
+
+  *（目前带有指纹识别的动态链接库编译的文件体积较大，还没有找到合适的办法压缩体积，各位师傅们有好的提议欢迎issue）*
+
+  ![scriptManager_linux](./img/serverscan/Usage/scriptManager_linux.png)
+
+​		![linux_help](./img/serverscan/Usage/linux_help.jpg)
+
+![linux_usage](./img/serverscan/Usage/linux_usage.jpg)
 
 * **INFINITY攻防协同平台版本**
 
    ~~（暂不公开）~~
-  
+
 
 ## 🎁支持ServerScan
 
-如果您认为ServerScan帮助到了您，想支持作者继续改进和优化ServerScan，可使用微信扫一扫下方的**赞赏码**。
+如果您认为ServerScan帮助到了您，可使用微信扫一扫下方的**赞赏码**，支持作者继续**改进**和**优化**ServerScan。
 
 <img src="./img/serverscan/thankyou.jpg" alt="thankyou" style="zoom: 33%;" />
 
@@ -190,18 +267,13 @@
 
 ## 📄版权
 
- 该项目未经作者本人允许，禁止商业性使用。
+ 该项目未经作者本人允许，禁止商业使用。
 
- 任何人不得将其用于非法用途以及盈利等目的，否则后果自行承担并将追究其相关责任！
+ 任何人不得将其用于非法用途及盈利等目的，否则自行承担后果并负相应法律责任。
 
 ## 📜免责声明
 
-1. 本工具仅面向于合法授权的渗透测试安全人员以及进行常规操作的网络运维人员，用户可以合法且非商业目的地前提进行下载、传播、复制、使用本工具。
+1. 本工具仅面向拥有合法授权的渗透测试安全人员及进行常规操作的网络运维人员，用户可在取得足够合法授权且非商用的前提下进行下载、复制、传播或使用。
+2. 在使用本工具的过程中，您应确保自己的所有行为符合当地法律法规，且不得将此软件用于违反中国人民共和国相关法律的活动。本工具所有作者和贡献者不承担用户擅自使用本工具从事任何违法活动所产生的任何责任。
 
-2. 本工具使用过程中，您应确保自己所有行为符合当地的法律法规，并且已经取得了足够的合法授权。
-
-3. 不得将此软件用于从事违反中国人民共和国相关法律所禁止的活动，本工具所有作者和所有贡献者不承担用户擅自使用本工具从事的任何违法活动所产生的任何责任。
-
-您已充分阅读、完全理解并接受本协议所有条款，否则，请您不要下载并使用本工具。
-
-您的使用行为或者您以其他任何明示或者默示方式表示接受本协议的，即视为您已阅读并同意本协议的约束。
+请您在下载并使用本工具前，充分阅读、完全理解并接受本协议的所有条款。您的使用行为或您以其他任何方式明示或默认表示接受本协议，即视为您已阅读并同意本协议的约束。
