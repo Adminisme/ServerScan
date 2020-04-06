@@ -7,7 +7,7 @@
 一款使用**Golang**开发且适用于攻防演习**内网横向信息收集**的**高并发**网络扫描、服务探测工具。
 
 ## 🍭Property
-- 多平台支持（Window、Mac、Linux、Cobalt Strike）
+- 多平台支持（Windows、Mac、Linux、Cobalt Strike）
 - 存活IP探测（支持TCP、ICMP两种模式）
 - 超快的端口扫描
 - 新增服务和应用版本检测功能，采用内置指纹探针采用[nmap-service-probes](https://raw.githubusercontent.com/nmap/nmap/master/nmap-service-probes)
