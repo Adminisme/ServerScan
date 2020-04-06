@@ -219,13 +219,13 @@
 
   * ***Windows***
 
-  ​     在Cobalt Strike的Script Manager中***Load*** ServerScanForWindows/serverScan.win.cna
+   	在Cobalt Strike的Script Manager中***Load*** ServerScanForWindows/serverScan.win.cna
 
   （Ps：serverScan.win.cna主要是通过将本地对应版本的Serverscan上传到服务器的c:\\windows\\temp\目录执行，此方法略显笨拙，后期会更新无文件落地的方法）
 
   ![scriptManager_win](./img/serverscan/Usage/scriptManager_win.png)
 
-  ​     选择一个已经上线的beacon,在Interact中输入help查看Commands是否新增了Serverscanx86、Serverscanx64，若出现就可以像使用portscan一样使用serverscan了。🙂
+   	 选择一个已经上线的beacon,在Interact中输入help查看Commands是否新增了Serverscan86、Serverscan64，若出现就可以像使用portscan一样使用serverscan了。🙂
 
   ![windows_help](./img/serverscan/Usage/windows_help.jpg)
 
