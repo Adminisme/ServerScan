@@ -10,18 +10,18 @@
 - 多平台支持（Windows、Mac、Linux、Cobalt Strike）
 - 存活IP探测（支持TCP、ICMP两种模式）
 - 超快的端口扫描
-- 新增服务和应用版本检测功能，采用内置指纹探针采用[nmap-service-probes](https://raw.githubusercontent.com/nmap/nmap/master/nmap-service-probes)
+- 服务和应用版本检测功能，内置指纹探针采用:[nmap-service-probes](https://raw.githubusercontent.com/nmap/nmap/master/nmap-service-probes)
 - Web服务（http、https）信息探测
-- ~~扫描结果兼容INFINITY攻防协同平台 （暂不公开）~~
+- ~~扫描结果兼容INFINITY攻防协同平台 ~~（暂不公开）
 
 ## 🎉First Game
 
-​	总结诸多实战经验，考虑到实战过程中会出现和存在复杂得环境、红蓝对抗过程中常见得内存加载无文件落地执行等，因此**ServerScan**设计了**轻巧版**、**专业版**、支持**Cobalt Strike跨平台beacon:[Cross C2](https://github.com/gloxec/CrossC2)的动态链接库**，以及支持**~~INFINITY攻防协同平台的专用版~~**。便于在不同的Shell环境中可以轻松自如的使用：如：Windows Cmd、Linux Console、远控Console、WebShell等，以及Cobalt Strike联动使用cna脚本文件加载，实现内网信息收集为下一步横向移动快速铺路。
+​	总结诸多实战经验，考虑到实战过程中会出现和存在复杂的环境、红蓝对抗过程中常用的内存加载无文件落地执行等，因此**ServerScan**设计了**轻巧版**、**专业版**、支持**Cobalt Strike跨平台beacon:[Cross C2](https://github.com/gloxec/CrossC2)的动态链接库**，~~以及支持**INFINITY攻防协同平台的专用版~~**。便于在不同的Shell环境中可以轻松自如地使用：如：Windows Cmd、Linux Console、远控Console、WebShell等，以及Cobalt Strike联动使用cna脚本文件加载，实现内网信息快速收集，为下一步横向移动铺路。
 
 **轻巧版：**
 
- 参数形式简单、扫描速度快耗时短、文件体积小、适合在网络情况较好条件情况下使用。
-
+ 参数形式简单、扫描速度快、耗时短、文件体积小、适合在网络情况较好的条件情况下使用。
+ 
 **专业版：**
 
  支持参数默认值、支持自定义扫描超时时长、支持扫描结果导出、适合在网络条件较苛刻的情况下使用。
@@ -95,7 +95,7 @@
 
   * ***Cobalt Strike跨平台beacon***
 
-    ​        ServerScan的优势在于跨平台，在Hook师傅的帮（jian）助（du）下目前已经基本适配了[Cross C2](https://github.com/gloxec/CrossC2)的Linux、Mac OS两大平台，为了提高隐匿性减少文件特征，目前支持内存加载可执行程序和动态链接库调用，您只需在安装了Cross C2的Cobalt Strike中导入对应的.cna脚本，即可实现ServerScan与Cobalt Strike跨平台beacon联动，具体使用参考[Usage](#usage)。
+    ​        ServerScan的优势在于跨平台，在Hook师傅的帮（jiān）助（dū）下目前已经基本适配了[Cross C2](https://github.com/gloxec/CrossC2)的Linux、Mac OS两大平台，为了提高隐匿性减少文件特征，目前支持内存加载可执行程序和动态链接库调用，您只需在安装了Cross C2的Cobalt Strike中导入对应的.cna脚本，即可实现ServerScan与Cobalt Strike跨平台beacon联动，具体使用参考[Usage](#usage)。
 
       * ***for PortScan***
 
@@ -219,7 +219,7 @@
 
   * ***Windows***
 
-   	在Cobalt Strike的Script Manager中***Load*** ServerScanForWindows/serverScan.win.cna
+   	在Cobalt Strike的Script Manager中***Load*** serverScan.win.cna
 
   （Ps：serverScan.win.cna主要是通过将本地对应版本的Serverscan上传到服务器的c:\\windows\\temp\目录执行，此方法略显笨拙，后期会更新无文件落地的方法）
 
@@ -233,7 +233,7 @@
 
   * ***Cobalt Strike跨平台beacon***
 
-  ​     首先您应该确保已经成功在安装了[Cross C2](https://github.com/gloxec/CrossC2)；
+  ​     首先您应该确保已经在Cobalt Strike成功安装了[Cross C2](https://github.com/gloxec/CrossC2)；
 
   ​	其次在Cobalt Strike的Script Manager中 ***Load*** serverscan.linux.elf.cna 和  serverscan.linux.so.cna两个脚本，其分别对应内存加载ELF、动态链接库so调用，两者的区别主要是隐匿性的问题😎
 
@@ -262,7 +262,7 @@
 
 一路走来，得到了很多前辈的帮助和指导，在此表示衷心的感谢！
 
-下列是本项目使用或者参考的优秀开源框架，感谢网上众多的开源项目及其开源项目的作者，致敬每一位为网络安全事业做出贡献的每一位前辈！
+下列是本项目使用或者参考的优秀开源框架，感谢网上众多的开源项目及其开源项目的作者，致敬为网络安全事业做出贡献的每一位前辈！
 
 * [httpscan](https://github.com/soxfmr/httpscan.go) - httpscan implements by Go
 * [iprange](https://github.com/malfunkt/iprange) - IPv4 address parser for the nmap format
