@@ -82,7 +82,7 @@
 
   * ***Windows***
 
-       	由于Cobalt Strike已经内置了PortScan，因此目前Windows仅支持利用cna上传对应版本的可执行文件到服务器进行扫描。
+       	由于Cobalt Strike已经内置了PortScan，因此目前Windows仅支持利用cna上传对应版本的ServerScan可执行文件到服务器进行扫描。
 
       * ***for Service and Version Detection***
 
