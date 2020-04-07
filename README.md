@@ -287,7 +287,7 @@
 
 ## 📄版权
 
- 该项目签署了GPL-3.0授权许可，详情请参阅[Licence](https://github.com/Adminisme/ServerScan/Licence)![gplv3](http://www.gnu.org/graphics/gplv3-or-later.png)
+ 该项目签署了GPL-3.0授权许可，详情请参阅[Licence](https://raw.githubusercontent.com/Adminisme/ServerScan/master/Licence)![gplv3](http://www.gnu.org/graphics/gplv3-or-later.png)
 
  除此之外也需要遵守项目中如下的补充条款：
 
