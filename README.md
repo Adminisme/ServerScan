@@ -287,6 +287,10 @@
 
 ## 📄版权
 
+ 该项目签署了GPL-3.0授权许可，详情请参阅[Licence](https://github.com/Adminisme/ServerScan/Licence)![gplv3](http://www.gnu.org/graphics/gplv3-or-later.png)
+
+ 除此之外也需要遵守项目中如下的补充条款：
+
  该项目未经作者本人允许，禁止商业使用。
 
  任何人不得将其用于非法用途及盈利等目的，否则自行承担后果并负相应法律责任。
