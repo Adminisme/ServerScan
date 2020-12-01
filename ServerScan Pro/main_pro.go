@@ -76,7 +76,11 @@ func main(){
 		flag.Usage()
 		return
 	}
-
+	
+	if outFile != "" && strings.Contains(outFile, "/") == false && strings.Contains(outFile, "\\") == false{
+		outFile = "./" + outFile
+	}
+	
 	if outFile != "" && pathCheck(outFile) == false {
 		fmt.Println("Outfile name exist or Outfile Path error.")
 		return
@@ -118,9 +122,9 @@ func main(){
 	}
 	if outFile != "" && pathCheck(outFile) == true && len(AliveHosts) != 0 {
 		f, _ := os.OpenFile(outFile, os.O_RDWR|os.O_CREATE, os.ModePerm)
-		for _,host :=range AliveHosts{
-			f.WriteString(host + "\n")
-		}
+		//for _,host :=range AliveHosts{
+		//	f.WriteString(host + "\n")
+		//}
 		for _,addr :=range AliveAddress{
 			f.WriteString(addr + "\n")
 		}
