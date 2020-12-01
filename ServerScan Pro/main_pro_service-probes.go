@@ -10,6 +10,7 @@ import (
 	"os"
 	"path/filepath"
 	"regexp"
+	"strings"
 )
 
 var version = "v1.0.2"
@@ -76,6 +77,10 @@ func main(){
 	if timeout <=0 || timeout >30 {
 		flag.Usage()
 		return
+	}
+	
+	if outFile != "" && strings.Contains(outFile, "/") == false && strings.Contains(outFile, "\\") == false{
+		outFile = "./" + outFile
 	}
 
 	if outFile != "" && pathCheck(outFile) == false {
