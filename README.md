@@ -301,3 +301,11 @@
 2. 在使用本工具的过程中，您应确保自己的所有行为符合当地法律法规，且不得将此软件用于违反中国人民共和国相关法律的活动。本工具所有作者和贡献者不承担用户擅自使用本工具从事任何违法活动所产生的任何责任。
 
 请您在下载并使用本工具前，充分阅读、完全理解并接受本协议的所有条款。您的使用行为或您以其他任何方式明示或默认表示接受本协议，即视为您已阅读并同意本协议的约束。
+
+
+# 404StarLink 2.0 - Galaxy
+![](https://github.com/knownsec/404StarLink-Project/raw/master/logo.png)
+
+ServerScan 是 404Team [星链计划2.0](https://github.com/knownsec/404StarLink2.0-Galaxy)中的一环，如果对ServerScan有任何疑问又或是想要找小伙伴交流，可以参考星链计划的加群方式。
+
+- [https://github.com/knownsec/404StarLink2.0-Galaxy#community](https://github.com/knownsec/404StarLink2.0-Galaxy#community)
